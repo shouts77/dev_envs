@@ -9,8 +9,8 @@ endif
 
 " 행숫자표기, 인덴트, 탭너비 설정
 set number
-"set cursorline
-"set ruler
+set ruler           " 현재 커서 위치 (row, col) 좌표 출력
+set laststatus=2    " 상태바를 언제나 표시할 것
 
 set autoindent
 set cindent
@@ -20,15 +20,56 @@ set tabstop=4
 set expandtab
 set shiftwidth=4
 
+set smartcase       " 대문자가 검색어 문자열에 포함될 때는 noignorecase
+set ignorecase      " 검색 시 대소문자 무시
+set hlsearch        " 검색 시 하이라이트
+set incsearch       " 검색 키워드 입력 시 한 글자 입력할 때마다 점진 검색
+
+set background=dark " 검정배경을 사용할 때, (문법 하이라이트 색상 달라짐)
+set sm              " 매치되는 괄호 표시
+
+" 모드별로 커서 모양 변경하기
+autocmd InsertEnter * set cursorcolumn
+autocmd InsertLeave * set nocursorcolumn
+
+" 20211203 - change cursor shape for each insert, command mode
+" Ps = 0  -> blinking block.
+" Ps = 1  -> blinking block (default).
+" Ps = 2  -> steady block.
+" Ps = 3  -> blinking underline.
+" Ps = 4  -> steady underline.
+" Ps = 5  -> blinking bar (xterm).
+" Ps = 6  -> steady bar (xterm).
+" t_SI: Start Insert mode
+" t_EI: End Insert mode
+
+let &t_SI = "\<ESC>[1 q"
+let &t_EI = "\<ESC>[2 q"
+
 " 가장 최근에 수정한 곳에 커서 위치
 au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ end
 
-" 상태바 상시 출력
-" set laststatus=2
-" set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
+" ESC 대응
+imap jk <Esc>
+imap kj <Esc>
+
+" 명령행 한글 입력 오류 처리
+ca ㅈ w
+
+
+" 버퍼간 이동
+nnoremap <F12>b :bn<ENTER>
+nnoremap <F12>c :bp<ENTER>
+nnoremap <F12>x :bd<ENTER>
+
+" navigation 기능 보완 
+nnoremap <Space>h ^
+nnoremap <Space>l $
+noremap <Space>j 8j
+noremap <Space>k 8k
 
 "----------------------------------------------------------
 " vim-plug 설정
@@ -47,7 +88,6 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' } 
 Plug 'mhinz/vim-startify'
-Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -77,6 +117,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 
@@ -85,6 +126,9 @@ Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+
+" NerdTree
+Plugin 'The-NERD-tree'
 
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
@@ -111,6 +155,11 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+"----------------------------------------------------------
+" The-NERD-tree 설정
+"----------------------------------------------------------
+nnoremap <F12>n :NERDTreeToggle<ENTER>
 
 "----------------------------------------------------------
 " Vimwiki 설정 (by John Grib)
@@ -207,7 +256,7 @@ function! NewTemplate()
    call add(l:template, 'summary : ')
    call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
    call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-   call add(l:template, 'tags    : ')
+   call add(l:template, 'tag     : ')
    call add(l:template, 'toc     : true')
    call add(l:template, 'public  : true')
    call add(l:template, 'parent  : ')
@@ -228,15 +277,6 @@ augroup vimwikiauto
     autocmd BufWritePre *wiki/*.md call LastModified()
     autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
 augroup END
-
-"----------------------------------------------------------
-" vim gruv color setting
-"----------------------------------------------------------
-
-set termguicolors
-let g:gruvbox_contrast_dark="hard"
-set background=dark
-"autocmd vimenter * colorscheme gruvbox
 
 "----------------------------------------------------------
 " airline 설정
@@ -277,11 +317,14 @@ let g:airline_powerline_fonts = 1
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
 
 " stratify list order
-    let g:startify_lists = [
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-          \ { 'type': 'files',     'header': ['   MRU']            },
-          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          \ { 'type': 'commands',  'header': ['   Commands']       },
-          \ ]
+let g:startify_lists = [
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+      \ ]
+
+
+let g:startify_session_sort = 1
 
