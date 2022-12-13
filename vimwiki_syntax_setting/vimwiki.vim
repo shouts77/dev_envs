@@ -1,3 +1,5 @@
+" Vimwiki syntaxfile 재작성하기 (/syntax/vimwiki.vim) (by John Grib)
+
 " vim:tabstop=2:shiftwidth=2:expandtab:textwidth=99
 
 if v:version < 600
