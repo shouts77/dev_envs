@@ -4,7 +4,7 @@
 " Vim-Plug 설정 파일 관리 (by John Grib)
 
 " Vim-Plug 목록
-let g:config_dir = expand('~/.vim/vim-include/')
+let g:config_dir = expand('~/dev_envs/config/')
 let s:file_plug_candidate = []
 
 command! -nargs=1 PlugFile call <SID>plug_file(<args>)
@@ -26,6 +26,8 @@ call plug#begin('~/.vim/plugged')
         PlugFile 'set-fzf.vim'
     Plug 'preservim/nerdtree'
         PlugFile 'set-nerdtree.vim'
+    Plug 'SirVer/ultisnips'
+        PlugFile 'set-ultisnips.vim'
 
 call plug#end()
 
