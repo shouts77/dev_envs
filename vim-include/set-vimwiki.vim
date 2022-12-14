@@ -37,7 +37,7 @@ nnoremap <F4> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
 nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>
 
 " Vimwiki blacklist
-let g:ycm_filetype_blacklist = {}
+"let g:ycm_filetype_blacklist = {}
 
 " Vimwiki 설정이 markdown 설정을 침투하지 않게 하기
 let g:vimwiki_global_ext = 0
