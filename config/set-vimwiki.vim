@@ -2,17 +2,15 @@
 " Vimwiki 설정 (by John Grib)
 "----------------------------------------------------------
 
-" 로컬 리더 키 설정은 취향이니 각자 마음에 드는 키로 설정한다
-let maplocalleader = "\\"
-
 " wiki list 설정
+let g:vim_wiki_set_path = expand('<sfile>:p:h')
 let g:vimwiki_list = [
-    \{
-    \   'path': '/home/tlo/git/shouts77.github.io/_wiki/',
-    \   'ext' : '.md',
-    \   'diary_rel_path': '.',
-    \},
-    \]
+            \{
+            \   'path': '/home/tlo/git/shouts77.github.io/_wiki/',
+            \   'ext' : '.md',
+            \   'diary_rel_path': '.',
+            \},
+            \]
 
 "let wiki = {}
 "let wiki.path = '~/git/shouts77.github.io/_wiki/'
@@ -29,6 +27,7 @@ let g:vimwiki_conceallevel = 0
 "nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
 "nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
 "nmap <LocalLeader>wt :VimwikiTable<CR>
+nmap <LocalLeader>v <Plug>VimwikiToggleListItem
 
 " F4 키를 누르면 커서가 놓인 단어를 위키에서 검색한다.
 nnoremap <F4> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
@@ -59,7 +58,7 @@ function! LastModified()
         let save_cursor = getpos(".")
         let n = min([10, line("$")])
         keepjumps exe '1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
-              \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
+                    \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
         call histdel('search', -1)
         call setpos('.', save_cursor)
     endif
@@ -69,49 +68,60 @@ autocmd BufWritePre *.md call LastModified()
 " Vimwiki function - 메타데이터 기본값 입력 템플릿 생성
 function! NewTemplate()
 
-   let l:wiki_directory = v:false
+    let l:wiki_directory = v:false
 
-   for wiki in g:vimwiki_list
-       if expand('%:p:h') . '/' == wiki.path
-           let l:wiki_directory = v:true
-           break
-       endif
-   endfor
+    for wiki in g:vimwiki_list
+        if expand('%:p:h') . '/' == wiki.path
+            let l:wiki_directory = v:true
+            break
+        endif
+    endfor
 
-   if !l:wiki_directory
-       return
-   endif
+    if !l:wiki_directory
+        return
+    endif
 
-   if line("$") > 1
-       return
-   endif
+    if line("$") > 1
+        return
+    endif
 
-   let l:template = []
-   call add(l:template, '---')
-   call add(l:template, 'layout  : wiki')
-   call add(l:template, 'title   : ')
-   call add(l:template, 'summary : ')
-   call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-   call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-   call add(l:template, 'tag     : ')
-   call add(l:template, 'toc     : true')
-   call add(l:template, 'public  : true')
-   call add(l:template, 'parent  : ')
-   call add(l:template, 'latex   : false')
-   call add(l:template, '---')
-   call add(l:template, '* TOC')
-   call add(l:template, '{:toc}')
-   call add(l:template, '')
-   call add(l:template, '# ')
-   call setline(1, l:template)
-   execute 'normal! G'
-   execute 'normal! $'
+    let l:template = []
+    call add(l:template, '---')
+    call add(l:template, 'layout  : wiki')
+    call add(l:template, 'title   : ')
+    call add(l:template, 'summary : ')
+    call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
+    call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
+    call add(l:template, 'tag     : ')
+    call add(l:template, 'toc     : true')
+    call add(l:template, 'public  : true')
+    call add(l:template, 'parent  : ')
+    call add(l:template, 'latex   : false')
+    call add(l:template, '---')
+    call add(l:template, '* TOC')
+    call add(l:template, '{:toc}')
+    call add(l:template, '')
+    call add(l:template, '# ')
+    call setline(1, l:template)
+    execute 'normal! G'
+    execute 'normal! $'
 
-   echom 'new wiki page has created'
+    echom 'new wiki page has created'
 endfunction
 
 augroup vimwikiauto
     autocmd BufWritePre *wiki/*.md call LastModified()
     autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
+augroup END
+
+" book progress update function
+function! UpdateBookProgress()
+    let l:cmd = g:vim_wiki_set_path . "/bookProgressUpdate.sh " . expand('%:p')
+    call system(l:cmd)
+    edit
+endfunction
+
+augroup todoauto
+    autocmd BufWritePost *wiki/*.md call UpdateBookProgress()
 augroup END
 

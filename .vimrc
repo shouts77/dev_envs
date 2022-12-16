@@ -15,19 +15,40 @@ endfunction
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
 
+    " Vim기반 어플리케이션
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' } 
         PlugFile 'set-vimwiki.vim'
+
+    " Session
     Plug 'mhinz/vim-startify'
         PlugFile 'set-startify.vim'
+
+    " Display
     Plug 'vim-airline/vim-airline'
         PlugFile 'set-airline.vim'
+        
+    " File 탐색
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
         PlugFile 'set-fzf.vim'
+
     Plug 'preservim/nerdtree'
         PlugFile 'set-nerdtree.vim'
+
+    " 자동완성
     Plug 'SirVer/ultisnips'
         PlugFile 'set-ultisnips.vim'
+
+    " 외부 기능 지원
+    " git
+    Plug 'tpope/vim-fugitive'
+    
+    " ctags
+    Plug 'ludovicchabant/vim-gutentags'
+        PlugFile 'set-gutentags.vim'
+    Plug 'majutsushi/tagbar'
+        PlugFile 'set-tagbar.vim'
+    Plug 'jszakmeister/markdown2ctags', {'do' : 'cp ./markdown2ctags.py ~/markdown2ctags.py'}
 
 call plug#end()
 
@@ -94,13 +115,15 @@ au BufReadPost *
 \ exe "norm g`\"" |
 \ end
 
+" 현재 편집중인 파일 경로로 pwd 를 변경한다
+command! Ncd :cd %:p:h
+
 " ESC 대응
 imap jk <Esc>
 imap kj <Esc>
 
 " 명령행 한글 입력 오류 처리
 ca ㅈ w
-
 
 " 버퍼간 이동 - 많이 사용하지 않아 일단 중지
 "nnoremap <F12>b :bn<ENTER>

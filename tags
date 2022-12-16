@@ -1,0 +1,62 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/tlo/dev_envs/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+<F12>n	config/set-nerdtree.vim	/^nnoremap <F12>n :NERDTreeToggle<ENTER>$/;"	m
+<F1><F1>	config/set-fzf.vim	/^nnoremap <F1><F1> :Files ~<ENTER>$/;"	m
+<F2><F2>	config/set-fzf.vim	/^nnoremap <F2><F2> :Buffers<ENTER>$/;"	m
+<F4>	config/set-vimwiki.vim	/^nnoremap <F4> :execute "VWS \/" . expand("<cword>") . "\/" <Bar> :lopen<CR>$/;"	m
+<LocalLeader>v	config/set-vimwiki.vim	/^nmap <LocalLeader>v <Plug>VimwikiToggleListItem$/;"	m
+<S-F4>	config/set-vimwiki.vim	/^nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>$/;"	m
+<Space>h	.vimrc	/^nnoremap <Space>h ^$/;"	m
+<Space>j	.vimrc	/^noremap <Space>j 8j$/;"	m
+<Space>k	.vimrc	/^noremap <Space>k 8k$/;"	m
+<Space>l	.vimrc	/^nnoremap <Space>l \$$/;"	m
+LastModified	config/set-vimwiki.vim	/^function! LastModified()$/;"	f
+Ncd	.vimrc	/^command! Ncd :cd %:p:h$/;"	c
+NewTemplate	config/set-vimwiki.vim	/^function! NewTemplate()$/;"	f
+PlugFile	.vimrc	/^command! -nargs=1 PlugFile call <SID>plug_file(<args>)$/;"	c
+UpdateBookProgress	config/set-vimwiki.vim	/^function! UpdateBookProgress()$/;"	f
+\\\\t	config/set-tagbar.vim	/^nnoremap \\\\t :TagbarOpen f<CR>$/;"	m
+\\t	config/set-tagbar.vim	/^nnoremap \\t :TagbarToggle<CR>:e<CR>$/;"	m
+b:current_syntax	vimwiki_syntax_setting/vimwiki.vim	/^let b:current_syntax = "vimwiki"$/;"	v
+g:UltiSnipsEditSplit	config/set-ultisnips.vim	/^let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.$/;"	v
+g:UltiSnipsExpandTrigger	config/set-ultisnips.vim	/^let g:UltiSnipsExpandTrigger="<C-k>"$/;"	v
+g:UltiSnipsJumpBackwardTrigger	config/set-ultisnips.vim	/^let g:UltiSnipsJumpBackwardTrigger="<Left>"$/;"	v
+g:UltiSnipsJumpForwardTrigger	config/set-ultisnips.vim	/^let g:UltiSnipsJumpForwardTrigger="<Right>"$/;"	v
+g:UltiSnipsSnippetDirectories	config/set-ultisnips.vim	/^let g:UltiSnipsSnippetDirectories = ['~\/dev_envs\/UltiSnips']$/;"	v
+g:airline#extensions#tabline#buffer_nr_format	config/set-airline.vim	/^let g:airline#extensions#tabline#buffer_nr_format = '%s:'$/;"	v
+g:airline#extensions#tabline#buffer_nr_show	config/set-airline.vim	/^let g:airline#extensions#tabline#buffer_nr_show = 1$/;"	v
+g:airline#extensions#tabline#enabled	config/set-airline.vim	/^let g:airline#extensions#tabline#enabled = 1       $/;"	v
+g:airline#extensions#tabline#formatter	config/set-airline.vim	/^let g:airline#extensions#tabline#formatter = 'unique_tail_improved'$/;"	v
+g:airline_powerline_fonts	config/set-airline.vim	/^let g:airline_powerline_fonts = 1$/;"	v
+g:config_dir	.vimrc	/^let g:config_dir = expand('~\/dev_envs\/config\/')$/;"	v
+g:fzf_layout	config/set-fzf.vim	/^let g:fzf_layout = { 'down': '~40%' }$/;"	v
+g:fzf_preview_window	config/set-fzf.vim	/^let g:fzf_preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-\/']$/;"	v
+g:gutentags_ctags_exclude	config/set-gutentags.vim	/^let g:gutentags_ctags_exclude=["node_modules"]$/;"	v
+g:gutentags_project_root	config/set-gutentags.vim	/^let g:gutentags_project_root = ['.git']$/;"	v
+g:startify_lists	config/set-startify.vim	/^let g:startify_lists = [$/;"	v
+g:startify_session_sort	config/set-startify.vim	/^let g:startify_session_sort = 1$/;"	v
+g:tagbar_type_markdown	config/set-tagbar.vim	/^let g:tagbar_type_markdown = {$/;"	v
+g:tagbar_type_vimwiki	config/set-tagbar.vim	/^let g:tagbar_type_vimwiki = {$/;"	v
+g:vim_wiki_set_path	config/set-vimwiki.vim	/^let g:vim_wiki_set_path = expand('<sfile>:p:h')$/;"	v
+g:vimwiki_conceallevel	config/set-vimwiki.vim	/^let g:vimwiki_conceallevel = 0$/;"	v
+g:vimwiki_global_ext	config/set-vimwiki.vim	/^let g:vimwiki_global_ext = 0$/;"	v
+g:vimwiki_list	config/set-vimwiki.vim	/^let g:vimwiki_list = [$/;"	v
+g:vimwiki_table_mappings	config/set-vimwiki.vim	/^let g:vimwiki_table_mappings = 0$/;"	v
+jk	.vimrc	/^imap jk <Esc>$/;"	m
+kj	.vimrc	/^imap kj <Esc>$/;"	m
+maplocalleader	.vimrc	/^let maplocalleader = "\\\\"$/;"	v
+s:file_plug_candidate	.vimrc	/^let s:file_plug_candidate = []$/;"	v
+s:file_plug_candidate	.vimrc	/^let s:file_plug_candidate = v:null$/;"	v
+s:plug_file	.vimrc	/^function! s:plug_file( ... )$/;"	f
+tagbar_custom_color	config/set-tagbar.vim	/^augroup tagbar_custom_color$/;"	a
+todoauto	config/set-vimwiki.vim	/^augroup todoauto$/;"	a
+vimwikiauto	config/set-vimwiki.vim	/^augroup vimwikiauto$/;"	a
