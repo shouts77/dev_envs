@@ -1,0 +1,8 @@
+# 태그 자동 완성
+snippet "<([^\s].*)" "tag <...></...>" r
+`!p snip.rv='<'+match.group(1)+'>'+'</'+match.group(1)+'>'`$0
+endsnippet
+
+snippet <
+<${1:tag}>`!p snip.rv = '</'+t[1]+'>'`$0
+endsnippet

@@ -15,18 +15,27 @@ endfunction
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
 
+    "* Cursor, Color
+    Plug 'johngrib/FlatColor-johngrib'
+        PlugFile 'set-color.vim'
+        PlugFile 'set-cursor.vim'
+
+
     " Vim기반 어플리케이션
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' } 
         PlugFile 'set-vimwiki.vim'
+
 
     " Session
     Plug 'mhinz/vim-startify'
         PlugFile 'set-startify.vim'
 
+
     " Display
     Plug 'vim-airline/vim-airline'
         PlugFile 'set-airline.vim'
         
+
     " File 탐색
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
@@ -35,20 +44,27 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree'
         PlugFile 'set-nerdtree.vim'
 
+
     " 자동완성
     Plug 'SirVer/ultisnips'
         PlugFile 'set-ultisnips.vim'
+
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        PlugFile 'set-coc.vim'
+
 
     " 외부 기능 지원
     " git
     Plug 'tpope/vim-fugitive'
     
+
     " ctags
     Plug 'ludovicchabant/vim-gutentags'
         PlugFile 'set-gutentags.vim'
     Plug 'majutsushi/tagbar'
         PlugFile 'set-tagbar.vim'
     Plug 'jszakmeister/markdown2ctags', {'do' : 'cp ./markdown2ctags.py ~/markdown2ctags.py'}
+
 
 call plug#end()
 
@@ -65,13 +81,17 @@ endfor
 let s:file_plug_candidate = v:null
 
 
-" Syntax Highlighting
-if has ("syntax")
-    syntax on
-endif
+" basic setting (by John Grib)
 
-" 행숫자표기, 인덴트, 탭너비 설정
-set number
+set nocompatible "vi 기능을 사용하지 않고 vim 만의 기능을 사용
+"set hidden  " Buffer should still exist if window is closed
+
+set cursorcolumn
+set cursorline       " highlight current line
+set lazyredraw       " redraw only when we need to.
+
+
+set number          " 행숫자표기, 인덴트, 탭너비 설정
 set ruler           " 현재 커서 위치 (row, col) 좌표 출력
 set laststatus=2    " 상태바를 언제나 표시할 것
 
@@ -88,12 +108,12 @@ set ignorecase      " 검색 시 대소문자 무시
 set hlsearch        " 검색 시 하이라이트
 set incsearch       " 검색 키워드 입력 시 한 글자 입력할 때마다 점진 검색
 
-set background=dark " 검정배경을 사용할 때, (문법 하이라이트 색상 달라짐)
+"set background=dark " 검정배경을 사용할 때, (문법 하이라이트 색상 달라짐)
 set sm              " 매치되는 괄호 표시
 
 " 모드별로 커서 모양 변경하기
-autocmd InsertEnter * set cursorcolumn
-autocmd InsertLeave * set nocursorcolumn
+"autocmd InsertEnter * set cursorcolumn
+"autocmd InsertLeave * set nocursorcolumn
 
 " 20211203 - change cursor shape for each insert, command mode
 " Ps = 0  -> blinking block.
@@ -106,29 +126,27 @@ autocmd InsertLeave * set nocursorcolumn
 " t_SI: Start Insert mode
 " t_EI: End Insert mode
 
-let &t_SI = "\<ESC>[1 q"
-let &t_EI = "\<ESC>[2 q"
+"let &t_SI = "\<ESC>[1 q"
+"let &t_EI = "\<ESC>[2 q"
 
-" 가장 최근에 수정한 곳에 커서 위치
-au BufReadPost *
-\ if line("'\"") > 0 && line("'\"") <= line("$") |
-\ exe "norm g`\"" |
-\ end
+" 짜증나는 swp, backup 파일 안 만들기
+set noswapfile
+set nobackup
 
-" 현재 편집중인 파일 경로로 pwd 를 변경한다
-command! Ncd :cd %:p:h
+set langmap=ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz
+set splitbelow
+set splitright
+set virtualedit=block   " visual block mode를 쓸 때 문자가 없는 곳도 선택 가능하다
+set autoread
+
+
+" map
+let mapleader = "\<Space>"
+let maplocalleader = "\\"
 
 " ESC 대응
 imap jk <Esc>
 imap kj <Esc>
-
-" 명령행 한글 입력 오류 처리
-ca ㅈ w
-
-" 버퍼간 이동 - 많이 사용하지 않아 일단 중지
-"nnoremap <F12>b :bn<ENTER>
-"nnoremap <F12>c :bp<ENTER>
-"nnoremap <F12>x :bd<ENTER>
 
 " navigation 기능 보완 
 nnoremap <Space>h ^
@@ -136,3 +154,14 @@ nnoremap <Space>l $
 noremap <Space>j 8j
 noremap <Space>k 8k
 
+" buffer 이동
+nnoremap <silent> <PageUp>   :bnext!<CR>
+nnoremap <silent> <PageDown> :bprevious!<CR>
+
+" Syntax Highlighting
+"if has ("syntax")
+"    syntax on
+"endif
+
+" 현재 편집중인 파일 경로로 pwd 를 변경한다
+command! Ncd :cd %:p:h

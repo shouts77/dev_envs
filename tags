@@ -9,6 +9,7 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
+$NVIM_TUI_ENABLE_TRUE_COLOR	config/set-color.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR=1$/;"	v
 <F12>n	config/set-nerdtree.vim	/^nnoremap <F12>n :NERDTreeToggle<ENTER>$/;"	m
 <F1><F1>	config/set-fzf.vim	/^nnoremap <F1><F1> :Files ~<ENTER>$/;"	m
 <F2><F2>	config/set-fzf.vim	/^nnoremap <F2><F2> :Buffers<ENTER>$/;"	m
@@ -19,6 +20,8 @@
 <Space>j	.vimrc	/^noremap <Space>j 8j$/;"	m
 <Space>k	.vimrc	/^noremap <Space>k 8k$/;"	m
 <Space>l	.vimrc	/^nnoremap <Space>l \$$/;"	m
+<TAB>	config/set-coc.vim	/^inoremap <silent><script><expr> <TAB>$/;"	m
+<c-space>	config/set-coc.vim	/^inoremap <silent><expr> <c-space> coc#refresh()$/;"	m
 LastModified	config/set-vimwiki.vim	/^function! LastModified()$/;"	f
 Ncd	.vimrc	/^command! Ncd :cd %:p:h$/;"	c
 NewTemplate	config/set-vimwiki.vim	/^function! NewTemplate()$/;"	f
@@ -28,20 +31,25 @@ UpdateBookProgress	config/set-vimwiki.vim	/^function! UpdateBookProgress()$/;"	f
 \\t	config/set-tagbar.vim	/^nnoremap \\t :TagbarToggle<CR>:e<CR>$/;"	m
 b:current_syntax	vimwiki_syntax_setting/vimwiki.vim	/^let b:current_syntax = "vimwiki"$/;"	v
 g:UltiSnipsEditSplit	config/set-ultisnips.vim	/^let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.$/;"	v
-g:UltiSnipsExpandTrigger	config/set-ultisnips.vim	/^let g:UltiSnipsExpandTrigger="<C-k>"$/;"	v
+g:UltiSnipsExpandTrigger	config/set-ultisnips.vim	/^let g:UltiSnipsExpandTrigger="<TAB>"$/;"	v
 g:UltiSnipsJumpBackwardTrigger	config/set-ultisnips.vim	/^let g:UltiSnipsJumpBackwardTrigger="<Left>"$/;"	v
 g:UltiSnipsJumpForwardTrigger	config/set-ultisnips.vim	/^let g:UltiSnipsJumpForwardTrigger="<Right>"$/;"	v
-g:UltiSnipsSnippetDirectories	config/set-ultisnips.vim	/^let g:UltiSnipsSnippetDirectories = ['~\/dev_envs\/UltiSnips']$/;"	v
+g:UltiSnipsSnippetDirectories	config/set-ultisnips.vim	/^let g:UltiSnipsSnippetDirectories = ['UltiSnips']$/;"	v
 g:airline#extensions#tabline#buffer_nr_format	config/set-airline.vim	/^let g:airline#extensions#tabline#buffer_nr_format = '%s:'$/;"	v
 g:airline#extensions#tabline#buffer_nr_show	config/set-airline.vim	/^let g:airline#extensions#tabline#buffer_nr_show = 1$/;"	v
 g:airline#extensions#tabline#enabled	config/set-airline.vim	/^let g:airline#extensions#tabline#enabled = 1       $/;"	v
 g:airline#extensions#tabline#formatter	config/set-airline.vim	/^let g:airline#extensions#tabline#formatter = 'unique_tail_improved'$/;"	v
 g:airline_powerline_fonts	config/set-airline.vim	/^let g:airline_powerline_fonts = 1$/;"	v
+g:coc_explorer_global_presets	config/set-coc.vim	/^let g:coc_explorer_global_presets = {$/;"	v
 g:config_dir	.vimrc	/^let g:config_dir = expand('~\/dev_envs\/config\/')$/;"	v
 g:fzf_layout	config/set-fzf.vim	/^let g:fzf_layout = { 'down': '~40%' }$/;"	v
 g:fzf_preview_window	config/set-fzf.vim	/^let g:fzf_preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-\/']$/;"	v
 g:gutentags_ctags_exclude	config/set-gutentags.vim	/^let g:gutentags_ctags_exclude=["node_modules"]$/;"	v
 g:gutentags_project_root	config/set-gutentags.vim	/^let g:gutentags_project_root = ['.git']$/;"	v
+g:multi_cursor_next_key	config/set-cursor.vim	/^let g:multi_cursor_next_key='<C-n>'$/;"	v
+g:multi_cursor_prev_key	config/set-cursor.vim	/^let g:multi_cursor_prev_key='<C-p>'$/;"	v
+g:multi_cursor_quit_key	config/set-cursor.vim	/^let g:multi_cursor_quit_key='<Esc>'$/;"	v
+g:multi_cursor_skip_key	config/set-cursor.vim	/^let g:multi_cursor_skip_key='<C-x>'$/;"	v
 g:startify_lists	config/set-startify.vim	/^let g:startify_lists = [$/;"	v
 g:startify_session_sort	config/set-startify.vim	/^let g:startify_session_sort = 1$/;"	v
 g:tagbar_type_markdown	config/set-tagbar.vim	/^let g:tagbar_type_markdown = {$/;"	v
@@ -52,8 +60,9 @@ g:vimwiki_global_ext	config/set-vimwiki.vim	/^let g:vimwiki_global_ext = 0$/;"	v
 g:vimwiki_list	config/set-vimwiki.vim	/^let g:vimwiki_list = [$/;"	v
 g:vimwiki_table_mappings	config/set-vimwiki.vim	/^let g:vimwiki_table_mappings = 0$/;"	v
 jk	.vimrc	/^imap jk <Esc>$/;"	m
+johngrib_cursor	config/set-cursor.vim	/^augroup johngrib_cursor$/;"	a
 kj	.vimrc	/^imap kj <Esc>$/;"	m
-maplocalleader	.vimrc	/^let maplocalleader = "\\\\"$/;"	v
+s:check_back_space	config/set-coc.vim	/^function! s:check_back_space() abort$/;"	f
 s:file_plug_candidate	.vimrc	/^let s:file_plug_candidate = []$/;"	v
 s:file_plug_candidate	.vimrc	/^let s:file_plug_candidate = v:null$/;"	v
 s:plug_file	.vimrc	/^function! s:plug_file( ... )$/;"	f
