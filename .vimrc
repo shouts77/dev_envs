@@ -80,11 +80,18 @@ for include_file in s:file_plug_candidate
 endfor
 let s:file_plug_candidate = v:null
 
+" COC plugin 목록
+"let g:coc_global_extensions = [
+"            \ 'coc-ultisnips',
+"            \ 'coc-explorer',
+"            \ 'coc-html',
+"            \]
+
 
 " basic setting (by John Grib)
 
 set nocompatible "vi 기능을 사용하지 않고 vim 만의 기능을 사용
-"set hidden  " Buffer should still exist if window is closed
+set hidden  " Buffer should still exist if window is closed
 
 set cursorcolumn
 set cursorline       " highlight current line

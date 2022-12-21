@@ -12,4 +12,4 @@ nnoremap <F2><F2> :Buffers<ENTER>
 "  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
 "  \   fzf#vim#with_preview(), <bang>0)
 
-"let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
