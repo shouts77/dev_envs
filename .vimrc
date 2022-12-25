@@ -4,7 +4,7 @@
 " Vim-Plug 설정 파일 관리 (by John Grib)
 
 " Vim-Plug 목록
-let g:config_dir = expand('~/dev_envs/config/')
+let g:config_dir = expand('~/git/dotfiles/config/')
 let s:file_plug_candidate = []
 
 command! -nargs=1 PlugFile call <SID>plug_file(<args>)
