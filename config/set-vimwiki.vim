@@ -6,7 +6,7 @@
 let g:vim_wiki_set_path = expand('<sfile>:p:h')
 let g:vimwiki_list = [
             \{
-            \   'path': '/home/tlo/git/shouts77.github.io/_wiki/',
+            \   'path': '/home/shouts/git/shouts77.github.io/_wiki/',
             \   'ext' : '.md',
             \   'diary_rel_path': '.',
             \},
