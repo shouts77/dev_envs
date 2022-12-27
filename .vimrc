@@ -85,11 +85,11 @@ endfor
 let s:file_plug_candidate = v:null
 
 " COC plugin 목록
-"let g:coc_global_extensions = [
-"            \ 'coc-ultisnips',
-"            \ 'coc-explorer',
-"            \ 'coc-html',
-"            \]
+" :CocUpdate
+let g:coc_global_extensions = [
+            \ 'coc-ultisnips',
+            \ 'coc-explorer',
+            \]
 
 
 " basic setting (by John Grib)
