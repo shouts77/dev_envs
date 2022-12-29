@@ -31,7 +31,7 @@ let g:vimwiki_conceallevel = 0
 "nmap <LocalLeader>ww <Plug>VimwikiIndex
 "nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
 "nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
-"nmap <LocalLeader>wt :VimwikiTable<CR>
+nmap <LocalLeader>wt :VimwikiTable<CR>
 nmap <LocalLeader>v <Plug>VimwikiToggleListItem
 
 " F4 키를 누르면 커서가 놓인 단어를 위키에서 검색한다.
