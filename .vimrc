@@ -56,6 +56,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
         PlugFile 'set-coc.vim'
 
+    " 편집 기능 확장
+    Plug 'tpope/vim-surround'
 
     " 외부 기능 지원
     " git
