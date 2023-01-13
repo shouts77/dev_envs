@@ -2,6 +2,12 @@
 " stratify setting
 "----------------------------------------------------------
 
+" custom header
+
+"let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
+let g:startify_custom_header = 'startify#pad(startify#fortune#quote())'
+
+
 " showing first page when all buffer was deleted
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
 
