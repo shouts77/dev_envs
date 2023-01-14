@@ -72,6 +72,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'jszakmeister/markdown2ctags', {'do' : 'cp ./markdown2ctags.py ~/markdown2ctags.py'}
 
 
+    " language 확장
+    Plug 'rust-lang/rust.vim'
+
+
+
 call plug#end()
 
 " Brief help
@@ -91,6 +96,7 @@ let s:file_plug_candidate = v:null
 let g:coc_global_extensions = [
             \ 'coc-ultisnips',
             \ 'coc-explorer',
+            \ 'coc-prettier',
             \]
 
 
