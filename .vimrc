@@ -75,7 +75,8 @@ call plug#begin('~/.vim/plugged')
     " language 확장
     Plug 'rust-lang/rust.vim'
 
-
+    " mdx 관련 설정
+    PlugFile 'set-mdx.vim'
 
 call plug#end()
 
