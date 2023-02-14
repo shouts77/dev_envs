@@ -22,4 +22,4 @@ qcd() {
 }
 
 # Set up tab completion
-complete -W "wiki qt study" qcd
+complete -W "wiki qt study dotfiles" qcd
