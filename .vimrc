@@ -75,6 +75,9 @@ call plug#begin('~/.vim/plugged')
     " language 확장
     Plug 'rust-lang/rust.vim'
 
+    " qtlog 기능
+        PlugFile 'set-qtmd.vim'
+
 
 call plug#end()
 
