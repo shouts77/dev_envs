@@ -131,6 +131,8 @@ set incsearch       " 검색 키워드 입력 시 한 글자 입력할 때마다
 
 "set background=dark " 검정배경을 사용할 때, (문법 하이라이트 색상 달라짐)
 set sm              " 매치되는 괄호 표시
+set belloff=all " 벨소리 제거
+
 
 " 모드별로 커서 모양 변경하기
 "autocmd InsertEnter * set cursorcolumn
