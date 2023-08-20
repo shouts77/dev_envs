@@ -77,6 +77,7 @@ call plug#begin('~/.vim/plugged')
 
     " language 확장
     Plug 'rust-lang/rust.vim'
+    Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
     " qtlog 기능
         PlugFile 'set-qtmd.vim'
