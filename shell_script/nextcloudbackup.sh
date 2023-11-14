@@ -1,8 +1,6 @@
 #!/bin/sh
 
-rm -rf /mnt/d/data/ &&
-
-cp -r /var/www/html/nextcloud/data/ /mnt/d/data/ &&
+rsync -avz --delete /var/www/html/nextcloud/data /mnt/d/nextcloud_backup &&
 
 exit 0
 

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+rm -rf /mnt/d/nextcloud_data/ &&
+
+cp -r /var/www/html/nextcloud/data/ /mnt/d/nextcloud_data/ &&
+
+exit 0
+
