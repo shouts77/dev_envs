@@ -8,13 +8,34 @@ set fileencodings=utf-8,cp949
 " Vim-Plug 설정 파일 관리 (by John Grib)
 
 " Vim-Plug 목록
-let g:config_dir = expand('~/git/dotfiles/config/')
+let g:config_dir = expand('~/dotfiles/config/')
 let s:file_plug_candidate = []
 
 command! -nargs=1 PlugFile call <SID>plug_file(<args>)
 function! s:plug_file( ... )
     call add(s:file_plug_candidate, g:config_dir . a:1)
 endfunction
+
+
+" vim plug-in install
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
@@ -76,8 +97,8 @@ call plug#begin('~/.vim/plugged')
 
 
     " language 확장
-    Plug 'rust-lang/rust.vim'
-    Plug 'evanleck/vim-svelte', {'branch': 'main'}
+    " Plug 'rust-lang/rust.vim'
+    " Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
     " qtlog 기능
         PlugFile 'set-qtmd.vim'
